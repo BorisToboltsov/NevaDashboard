@@ -11,7 +11,7 @@ class CatalogName(models.Model):  # Название справочников
 
 
 class CatalogData(models.Model):  # Данные справочника
-    catalog_name_id = models.ForeignKey(CatalogName, on_delete=models.SET_NULL)
+    catalog_name_id = models.ForeignKey(CatalogName, on_delete=models.SET_NULL, null=True)
     value = models.CharField(verbose_name='Значение', max_length=255)
     sequence = models.PositiveBigIntegerField(verbose_name='')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -57,7 +57,7 @@ class RegistryFoodOrganizations(models.Model):  # Реестр организа�
     catalog_data_id = models.ManyToManyField(
         CatalogData)  # m-m CatalogData Варианты кухни (Европейская, Русская, Итальянская, Немецкая, Индийская, нет данных и т.д.) Могут быть в различных сочетаниях
     name_organization = models.CharField(verbose_name='Название организации', max_length=255)
-    legal_name_organization = models.Model(verbose_name='Юр. название организации', max_length=255)
+    legal_name_organization = models.CharField(verbose_name='Юр. название организации', max_length=255)
     operation_mode = models.CharField(verbose_name='Режим работы', max_length=255)
     capacity = models.SmallIntegerField(verbose_name='Вместимость')
     capacity_comment = models.TextField(verbose_name='Комментарий к вместимости', blank=True, null=True)
@@ -71,7 +71,7 @@ class RegistryFoodOrganizations(models.Model):  # Реестр организа�
 class RegistryHotels(models.Model):  # Реестр отелей
     contact_id = models.ManyToManyField(Contact)
     name_organization = models.CharField(verbose_name='Название организации', max_length=255)
-    number_stars_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL)  # Количество звезд
+    number_stars_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL, null=True)  # Количество звезд
     location = models.CharField(verbose_name='Локация', max_length=255)
     number_room = models.PositiveSmallIntegerField(verbose_name='Количество номером')
     official_website = models.URLField(verbose_name='Оффициальный website')
@@ -112,7 +112,7 @@ class RegistryMuseum(models.Model):  # Реестр музеев
 class EmployeeData(models.Model):  # Список сотрудников
     contact_id = models.ManyToManyField(Contact)
     fio = models.CharField(verbose_name='Фио сотрудника', max_length=100)
-    post_employee_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL)  # Должность сотрудника
+    post_employee_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL, null=True)  # Должность сотрудника
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -123,19 +123,19 @@ class Group(models.Model):
     number_people = models.PositiveSmallIntegerField(verbose_name='Количество человек')
     school_group = models.CharField(verbose_name='Школьная группа', max_length=255)
     paid_status = models.CharField(verbose_name='Статус оплаты', max_length=50)
-    registry_sending_travel_agency_id = models.ForeignKey(RegistrySendingTravelAgency, on_delete=models.SET_NULL)
+    registry_sending_travel_agency_id = models.ForeignKey(RegistrySendingTravelAgency, on_delete=models.SET_NULL, null=True)
     arrival_date = models.DateTimeField(verbose_name='Дата прибытия')
     departure_date = models.DateTimeField(verbose_name='Дата отъезда')
-    manager_id = models.ForeignKey(EmployeeData, on_delete=models.SET_NULL)
+    manager_id = models.ForeignKey(EmployeeData, on_delete=models.SET_NULL, null=True)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class GroupMuseum(models.Model):
-    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL)
-    guide_id = models.ForeignKey(EmployeeData, on_delete=models.SET_NULL)
-    registry_museum_id = models.ForeignKey(RegistryMuseum, on_delete=models.SET_NULL)
+    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    guide_id = models.ForeignKey(EmployeeData, on_delete=models.SET_NULL, null=True)
+    registry_museum_id = models.ForeignKey(RegistryMuseum, on_delete=models.SET_NULL, null=True)
     datetime = models.DateTimeField(verbose_name='Дата, время')
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -143,8 +143,8 @@ class GroupMuseum(models.Model):
 
 
 class GroupHotel(models.Model):
-    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL)
-    registry_hotels_id = models.ForeignKey(RegistryHotels, on_delete=models.SET_NULL)
+    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    registry_hotels_id = models.ForeignKey(RegistryHotels, on_delete=models.SET_NULL, null=True)
     arrival_date = models.DateTimeField(verbose_name='Дата заезда')
     departure_date = models.DateTimeField(verbose_name='Дата выезда')
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
@@ -153,9 +153,9 @@ class GroupHotel(models.Model):
 
 
 class GroupTransport(models.Model):
-    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL)
-    registry_transport_organizations_id = models.ForeignKey(RegistryTransportOrganizations, on_delete=models.SET_NULL)
-    type_tk_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL)
+    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    registry_transport_organizations_id = models.ForeignKey(RegistryTransportOrganizations, on_delete=models.SET_NULL, null=True)
+    type_tk_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL, null=True)
     submission_address = models.CharField(verbose_name='Адрес подачи', max_length=100)
     submission_time = models.DateTimeField(verbose_name='Дата и время подачи')
     completion_address = models.CharField(verbose_name='Адрес завершения', max_length=100)
@@ -166,10 +166,10 @@ class GroupTransport(models.Model):
 
 
 class GroupFood(models.Model):
-    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL)
-    registry_food_organizations_id = models.ForeignKey(RegistryFoodOrganizations, on_delete=models.SET_NULL)
+    group_id = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    registry_food_organizations_id = models.ForeignKey(RegistryFoodOrganizations, on_delete=models.SET_NULL, null=True)
     datetime = models.DateTimeField(verbose_name='Дата, время')
-    type_meal_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL)
+    type_meal_id = models.ForeignKey(CatalogData, on_delete=models.SET_NULL, null=True)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
