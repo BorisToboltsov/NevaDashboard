@@ -10,15 +10,14 @@ function createChart(e) {
     let left = 0,
       width = 0;
 
-    if (startDay.endsWith("½")) {
+    if (startDay.endsWith("1")) {
       const filteredArray = daysArray.filter(day => day.textContent == startDay.slice(0, -1));
       left = filteredArray[0].offsetLeft + filteredArray[0].offsetWidth / 2;
     } else {
       const filteredArray = daysArray.filter(day => day.textContent == startDay);
       left = filteredArray[0].offsetLeft;
     }
-
-    if (endDay.endsWith("½")) {
+    if (endDay.endsWith("1")) {
       const filteredArray = daysArray.filter(day => day.textContent == endDay.slice(0, -1));
       width = filteredArray[0].offsetLeft + filteredArray[0].offsetWidth / 2 - left;
     } else {
