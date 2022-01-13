@@ -4,20 +4,36 @@ from django.shortcuts import render
 
 
 def check_in(request):
-    return render(request, 'dashboard/check_in.html')
+    context = {
+        'title': 'Dashboard график заездов',
+    }
+    return render(request, 'dashboard/check_in.html', context)
 
 
 def hotels(request):
-    return render(request, 'dashboard/hotels.html')
+    context = {
+        'title': 'Dashboard отели',
+    }
+    return render(request, 'dashboard/hotels.html', context)
 
 
 def transports(request):
-    return render(request, 'dashboard/transports.html')
+    context = {
+        'title': 'Dashboard транспорт',
+    }
+    return render(request, 'dashboard/transports.html', context)
 
 
 def museums(request):
-    return render(request, 'dashboard/museums.html')
+    context = {
+        'title': 'Dashboard музеи',
+        'hotel': 'Гостиница Москва'
+    }
+    return render(request, 'dashboard/museums.html', context)
 
 
 def food(request):
-    return render(request, 'dashboard/food.html')
+    context = {
+        'title': 'Dashboard питание',
+    }
+    return render(request, 'dashboard/food.html', context)
