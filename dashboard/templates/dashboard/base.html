@@ -7,6 +7,8 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
 {% block menu %}
@@ -44,5 +46,7 @@
 {% endblock %}
 
 <script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% block js %}
+{% endblock %}
 </body>
 </html>
