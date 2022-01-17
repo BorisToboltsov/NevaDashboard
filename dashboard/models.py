@@ -13,6 +13,9 @@ class CatalogName(models.Model):
         verbose_name = 'Название справочника'
         verbose_name_plural = 'Название справочников'
 
+    def __str__(self):
+        return self.name
+
 
 class CatalogData(models.Model):
     catalog_name_id = models.ForeignKey(CatalogName, verbose_name='Название каталога', on_delete=models.SET_NULL, null=True)
@@ -24,6 +27,9 @@ class CatalogData(models.Model):
     class Meta:
         verbose_name = 'Данные справочника'
         verbose_name_plural = 'Данные справочников'
+
+    def __str__(self):
+        return f'{self.value} ({self.catalog_name_id.name})'
 
 
 class Contact(models.Model):
@@ -44,11 +50,14 @@ class Contact(models.Model):
         verbose_name = 'Контакт'
         verbose_name_plural = 'Контакты'
 
+    def __str__(self):
+        return f'{self.fio} ({self.organization})'
+
 
 class RegistrySendingTravelAgency(models.Model):
     contact_id = models.ManyToManyField(Contact, verbose_name='Контакты')
     name_organization = models.CharField(verbose_name='Название организации', max_length=255)
-    account_number = models.BigIntegerField(verbose_name='Номер счета', null=False, blank=True, unique=True)
+    account_number = models.BigIntegerField(verbose_name='Номер счета', null=True, blank=True, unique=True)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -56,6 +65,9 @@ class RegistrySendingTravelAgency(models.Model):
     class Meta:
         verbose_name = 'Реестр отправляющих компаний'
         verbose_name_plural = 'Реестр отправляющих компаний'
+
+    def __str__(self):
+        return self.name_organization
 
 
 class RegistryTransportOrganizations(models.Model):
@@ -69,6 +81,9 @@ class RegistryTransportOrganizations(models.Model):
     class Meta:
         verbose_name = 'Реестр транспортных компаний'
         verbose_name_plural = 'Реестр транспортных компаний'
+
+    def __str__(self):
+        return self.name_organization
 
 
 class RegistryFoodOrganizations(models.Model):
@@ -88,6 +103,9 @@ class RegistryFoodOrganizations(models.Model):
     class Meta:
         verbose_name = 'Реестр организаций по питанию'
         verbose_name_plural = 'Реестр организаций по питанию'
+
+    def __str__(self):
+        return self.name_organization
 
 
 class RegistryHotels(models.Model):
@@ -119,6 +137,9 @@ class RegistryHotels(models.Model):
         verbose_name = 'Реестр отелей'
         verbose_name_plural = 'Реестр отелей'
 
+    def __str__(self):
+        return self.name_organization
+
 
 class RegistryMuseum(models.Model):
     contact_id = models.ManyToManyField(Contact, verbose_name='Контакты')
@@ -138,6 +159,9 @@ class RegistryMuseum(models.Model):
         verbose_name = 'Реестр музеев'
         verbose_name_plural = 'Реестр музеев'
 
+    def __str__(self):
+        return self.name_organization
+
 
 class EmployeeData(models.Model):
     contact_id = models.ManyToManyField(Contact, verbose_name='Контакты')
@@ -150,6 +174,9 @@ class EmployeeData(models.Model):
     class Meta:
         verbose_name = 'Список сотрудников'
         verbose_name_plural = 'Список сотрудников'
+
+    def __str__(self):
+        return f'{self.fio} ({self.post_employee_id.value})'
 
 
 class Group(models.Model):
@@ -169,6 +196,9 @@ class Group(models.Model):
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
 
+    def __str__(self):
+        return f'{self.name_group} ({self.arrival_date})'
+
 
 class GroupMuseum(models.Model):
     group_id = models.ForeignKey(Group, verbose_name='Группа', on_delete=models.SET_NULL, null=True)
@@ -183,6 +213,9 @@ class GroupMuseum(models.Model):
         verbose_name = 'Музей группы'
         verbose_name_plural = 'Музеи групп'
 
+    def __str__(self):
+        return f'{self.registry_museum_id.name_organization} ({self.group_id.name_group})'
+
 
 class GroupHotel(models.Model):
     group_id = models.ForeignKey(Group, verbose_name='Группа', on_delete=models.SET_NULL, null=True)
@@ -196,6 +229,9 @@ class GroupHotel(models.Model):
     class Meta:
         verbose_name = 'Отель группы'
         verbose_name_plural = 'Отели групп'
+
+    def __str__(self):
+        return f'{self.registry_hotels_id.name_organization} ({self.group_id.name_group})'
 
 
 class GroupTransport(models.Model):
@@ -214,6 +250,9 @@ class GroupTransport(models.Model):
         verbose_name = 'Транспорт группы'
         verbose_name_plural = 'Транспорт групп'
 
+    def __str__(self):
+        return f'{self.registry_transport_organizations_id.name_organization} ({self.group_id.name_group})'
+
 
 class GroupFood(models.Model):
     group_id = models.ForeignKey(Group, verbose_name='Группа', on_delete=models.SET_NULL, null=True)
@@ -227,3 +266,6 @@ class GroupFood(models.Model):
     class Meta:
         verbose_name = 'Питание группы'
         verbose_name_plural = 'Питание групп'
+
+    def __str__(self):
+        return f'{self.registry_food_organizations_id.name_organization} ({self.group_id.name_group})'
