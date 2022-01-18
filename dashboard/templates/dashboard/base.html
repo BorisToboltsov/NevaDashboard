@@ -14,10 +14,11 @@
 
 </head>
 <body>
+{% if user.is_authenticated %}
 {% block menu %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'check_in' %}">График заездов</a>
+            <a class="navbar-brand" href="{% url 'dashboard:check_in' %}">График заездов</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -68,5 +69,6 @@
 <script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 {% block js %}
 {% endblock %}
+{% endif %}
 </body>
 </html>

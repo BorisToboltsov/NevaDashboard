@@ -21,6 +21,7 @@ from dashboard.views import hotels, transports, museums, food, check_in
 app_name = 'dashboard'
 
 urlpatterns = [
+    path('check_in/', check_in, name='check_in'),
     path('hotels/', hotels, name='hotels'),
     path('transports/', transports, name='transports'),
     path('museums/', museums, name='museums'),

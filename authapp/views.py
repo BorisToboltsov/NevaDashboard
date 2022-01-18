@@ -14,7 +14,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('dashboard:hotels'))
+                return HttpResponseRedirect(reverse('dashboard:check_in'))
             else:
                 print(form.errors)
     else:

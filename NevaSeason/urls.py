@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from dashboard.views import check_in
+from authapp.views import login
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', check_in, name='check_in'),
+    path('', login, name='index'),
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('auth/', include('authapp.urls', namespace='authapp')),
 ]
