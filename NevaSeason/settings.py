@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET
+SECRET_KEY = 'django-insecure-=++z=6cf&7gn#rqnyk1#6av9q+jli!$h=-8rn$5kv5)kww&0$8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -128,5 +128,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'authapp.User'
