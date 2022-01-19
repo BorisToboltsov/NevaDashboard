@@ -32,21 +32,23 @@ def transports(request):
         for days in range(1, data_range.days+1):
             dates.append((start_date + datetime.timedelta(days)).strftime('%d.%m'))
 
-        group = Group.objects.values()
-        for i in group:
-            print(i['arrival_date'].strftime('%d.%m'))
-            print(i['departure_date'].strftime('%d.%m'))
+        groups = Group.objects.values()
+        for i in groups:
+            i['arrival_date'] = i['arrival_date'].strftime('%d.%m')
+            i['departure_date'] = i['departure_date'].strftime('%d.%m')
             print(i['name_group'])
 
     else:
         form = DashboardDate()
         dates = list()
+        groups = []
 
     context = {
         'title': 'Dashboard транспорт',
         'url':  'dashboard:transports',
         'form': form,
-        'dates': dates
+        'dates': dates,
+        'groups': groups,
     }
     return render(request, 'dashboard/transports.html', context)
 
