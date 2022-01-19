@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from dashboard.forms import DashboardDate
+import datetime
+
+from dashboard.models import Group
 
 
 def check_in(request):
@@ -20,14 +23,30 @@ def hotels(request):
 
 def transports(request):
     if request.method == 'POST':
-        form = DashboardDate(data=request)
+        form = DashboardDate(data=request.POST)
+        start_date = datetime.datetime.strptime(request.POST.get('start_date'), '%d-%m-%Y')
+        end_date = datetime.datetime.strptime(request.POST.get('end_date'), '%d-%m-%Y')
+        data_range = end_date - start_date
+        dates = list()
+        dates.append(start_date.strftime('%d.%m'))
+        for days in range(1, data_range.days+1):
+            dates.append((start_date + datetime.timedelta(days)).strftime('%d.%m'))
+
+        group = Group.objects.values()
+        for i in group:
+            print(i['arrival_date'].strftime('%d.%m'))
+            print(i['departure_date'].strftime('%d.%m'))
+            print(i['name_group'])
+
     else:
         form = DashboardDate()
+        dates = list()
 
     context = {
         'title': 'Dashboard транспорт',
         'url':  'dashboard:transports',
-        'form': form
+        'form': form,
+        'dates': dates
     }
     return render(request, 'dashboard/transports.html', context)
 
