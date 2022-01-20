@@ -36,7 +36,6 @@ def transports(request):
         for i in groups:
             i['arrival_date'] = i['arrival_date'].strftime('%d.%m')
             i['departure_date'] = i['departure_date'].strftime('%d.%m')
-            print(i['name_group'])
 
     else:
         form = DashboardDate()

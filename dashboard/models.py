@@ -180,7 +180,15 @@ class EmployeeData(models.Model):
 
 
 class Group(models.Model):
+    color = [
+        ('red', 'Красный'),
+        ('blue', 'Синий'),
+        ('orange', 'Оранжевый'),
+        ('black', 'Черный'),
+        ('green', 'Зеленый'),
+    ]
     name_group = models.CharField(verbose_name='Название группы', max_length=255)
+    color_group = models.CharField(verbose_name='Цвет выделения', max_length=6, choices=color, default='green')
     number_people = models.PositiveSmallIntegerField(verbose_name='Количество человек')
     school_group = models.CharField(verbose_name='Школьная группа', max_length=255, null=True, blank=True)
     paid_status = models.CharField(verbose_name='Статус оплаты', max_length=50)
