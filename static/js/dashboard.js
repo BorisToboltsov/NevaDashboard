@@ -10,11 +10,13 @@ function createChart(e) {
         let left = 0,
             width = 0;
 
+        
+
         const filteredArrayStart = daysArray.filter(day => day.textContent === startDay);
         const filteredArrayEnd = daysArray.filter(day => day.textContent === endDay);
 
         if (filteredArrayEnd.length === 0 && filteredArrayStart.length === 0) {
-            el.remove();
+            // el.remove();
         } else {
             if (filteredArrayStart.length > 0) {
                 left = filteredArrayStart[0].offsetLeft + filteredArrayStart[0].offsetWidth / 10;

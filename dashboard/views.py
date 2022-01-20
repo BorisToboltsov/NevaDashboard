@@ -28,14 +28,14 @@ def transports(request):
         end_date = datetime.datetime.strptime(request.POST.get('end_date'), '%d-%m-%Y')
         data_range = end_date - start_date
         dates = list()
-        dates.append(start_date.strftime('%d.%m'))
+        dates.append(start_date.strftime('%d.%m.%y'))
         for days in range(1, data_range.days+1):
-            dates.append((start_date + datetime.timedelta(days)).strftime('%d.%m'))
+            dates.append((start_date + datetime.timedelta(days)).strftime('%d.%m.%y'))
 
         groups = Group.objects.values()
         for i in groups:
-            i['arrival_date'] = i['arrival_date'].strftime('%d.%m')
-            i['departure_date'] = i['departure_date'].strftime('%d.%m')
+            i['arrival_date'] = i['arrival_date'].strftime('%d.%m.%y')
+            i['departure_date'] = i['departure_date'].strftime('%d.%m.%y')
 
     else:
         form = DashboardDate()
