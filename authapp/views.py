@@ -15,8 +15,6 @@ def login(request):
             if user.is_active:
                 auth.login(request, user)
                 return HttpResponseRedirect(reverse('dashboard:check_in'))
-            else:
-                print(form.errors)
     else:
         form = UserLoginForm()
     context = {
@@ -32,8 +30,6 @@ def register(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('dashboard:hotels'))
-        else:
-            print(form.errors)
     else:
         form = UserRegisterForm()
     context = {
@@ -41,6 +37,13 @@ def register(request):
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
+
+
+def profile(request):
+    context = {
+        'title': 'Профайл'
+    }
+    return render(request, 'authapp/profile.html', context)
 
 
 def logout(request):
