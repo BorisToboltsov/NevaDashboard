@@ -10,11 +10,12 @@
         </ul>
         <ul class="chart-bars">
             {% for group in groups %}
-                <li data-duration="{{ group.arrival_date }}#{{ group.departure_date }}" data-color="{{ group.color_group }}">{{ group.name_group }}</li>
+                <li class="group" data-id="{{ group.id }}" data-duration="{{ group.arrival_date }}#{{ group.departure_date }}" data-color="{{ group.color_group }}">{{ group.name_group }}</li>
             {% endfor %}
         </ul>
     </div>
 {% endblock %}
 {% block js %}
     <script defer src="{% static 'js/dashboard.js' %}"></script>
+    <script defer src="{% static 'js/groupinfo.js' %}"></script>
 {% endblock %}
