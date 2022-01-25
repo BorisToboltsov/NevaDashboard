@@ -24,24 +24,22 @@ def hotels(request):
 def transports(request):
     if request.method == 'POST':
         form = DashboardDate(data=request.POST)
-        start_date = datetime.datetime.strptime(request.POST.get('start_date'), '%d-%m-%Y')
-        end_date = datetime.datetime.strptime(request.POST.get('end_date'), '%d-%m-%Y')
+        start_date = datetime.datetime.strptime(request.POST.get('start_date'), '%d-%m-%Y').date()
+        end_date = datetime.datetime.strptime(request.POST.get('end_date'), '%d-%m-%Y').date()
         data_range = end_date - start_date
         dates = list()
-        dates.append(start_date.strftime('%d.%m.%y'))
-        for days in range(1, data_range.days+1):
-            dates.append((start_date + datetime.timedelta(days)).strftime('%d.%m.%y'))
-
-        groups = Group.objects.values()
+        for days in range(0, data_range.days+1):
+            dates.append((start_date + datetime.timedelta(days)).isoformat())
+        groups = Group.objects.values()  # Выбор всех групп
+        # groups = Group.objects.filter(arrival_date__gte=start_date).filter(departure_date__lte=end_date).values()
         for i in groups:
-            i['arrival_date'] = i['arrival_date'].strftime('%d.%m.%y')
-            i['departure_date'] = i['departure_date'].strftime('%d.%m.%y')
+            i['arrival_date'] = i['arrival_date'].date().isoformat()
+            i['departure_date'] = i['departure_date'].date().isoformat()
 
     else:
         form = DashboardDate()
         dates = list()
         groups = []
-
     context = {
         'title': 'Dashboard транспорт',
         'url':  'dashboard:transports',
