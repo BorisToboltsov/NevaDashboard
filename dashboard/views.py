@@ -16,8 +16,10 @@ def check_in(request):
         dates = list()
         for days in range(0, data_range.days + 1):
             dates.append((start_date + datetime.timedelta(days)).isoformat())
-        groups = Group.objects.values()  # Выбор всех групп
-        # groups = Group.objects.filter(arrival_date__gte=start_date).filter(departure_date__lte=end_date).values()
+        start_date_30 = start_date - datetime.timedelta(30)
+        end_date_30 = end_date + datetime.timedelta(30)
+        # groups = Group.objects.values()  # Выбор всех групп
+        groups = Group.objects.filter(arrival_date__gte=start_date_30).filter(departure_date__lte=end_date_30).values()
         for i in groups:
             i['arrival_date'] = i['arrival_date'].date().isoformat()
             i['departure_date'] = i['departure_date'].date().isoformat()
