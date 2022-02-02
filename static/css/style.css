@@ -2,3 +2,25 @@
   margin-bottom: 0;
   padding-left: 0;
 }
+
+.nav-link {
+  padding: 0.2rem 1rem;
+}
+
+.menu-icons {
+  font-size: 1.8em;
+}
+
+.btn-submenu {
+  font-size: 1.8em;
+}
+
+.date {
+  padding-top: 5px;
+}
+
+.btn-secondary {
+    color: gray;
+    border-color: #6c757d;
+  background-color: white;
+}

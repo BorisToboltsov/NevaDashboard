@@ -1,0 +1,201 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <form>
+            {% if not user.is_superuser %}
+                <div class="col-lg-6 mx-auto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Агенство по отправке"
+                               aria-label="Агенство по отправке"
+                               aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1">
+                        <a href="#"><i class="bi bi-file-earmark-plus"></i></a>
+                    </span>
+                    </div>
+                    <label for="basic-url" class="form-label">Даты заезда</label>
+                    <div class="input-group mb-3">
+                        <input class="btn btn-outline-secondary dateFrom top_date" type="date">
+                        <input class="btn btn-outline-secondary dateFrom top_date" type="date">
+                    </div>
+                    <label for="exampleDataList" class="form-label">Отель</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group mb-auto col-lg-3">
+                            <input class="form-control" list="datalistOptions" id="exampleDataList"
+                                   placeholder="Отель..." aria-describedby="basic-addon1">
+                            <datalist id="datalistOptions">
+                                <option value="Москва">
+                                <option value="Англетер">
+                                <option value="Sokos Hotel Palace">
+                                <option value="Октябрьская">
+                                <option value="Астория">
+                            </datalist>
+                            <div>
+                                Заезд <input class="btn btn-outline-secondary dateFrom top_date" type="date">
+                                Выезд <input class="btn btn-outline-secondary dateFrom top_date" type="date">
+                            </div>
+                            <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
+                        </div>
+                    </div>
+                    <label for="basic-url" class="form-label">Менджер</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" placeholder="Васильева Василиса Васильевна"
+                               aria-label="Disabled input example" disabled>
+                    </div>
+                    <label for="basic-url" class="form-label">Номер RU</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Номер RU"
+                               aria-label="Номер RU">
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Статус оплаты</option>
+                            <option value="1">Нет</option>
+                            <option value="2">Предоплата</option>
+                            <option value="3">Полная</option>
+                        </select>
+                    </div>
+                    <label for="basic-url" class="form-label">Прибытие</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Прибытие"
+                               aria-label="Прибытие">
+                    </div>
+                    <label for="basic-url" class="form-label">Отправление</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Отправление"
+                               aria-label="Отправление">
+                    </div>
+                </div>
+            {% else %}
+                <div class="card">
+                    <div class="card-body">
+                        Заказчик, Менеджер, RU, Отель, Кол-во человек (шк 10, взрс 10, вод 2)
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="card " style="width: 21rem;">
+                    <div class="card-body">
+                        <h6 class="card-title">02.02.2022 Понедельник</h6>
+                        <div class="input-group mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Свободный день
+                            </label>
+                        </div>
+                        <label for="basic-url" class="form-label">Кол-во человек</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Шк"
+                                   aria-label="Кол-во человек">
+                            <input type="text" class="form-control" placeholder="Взрс"
+                                   aria-label="Кол-во человек">
+                            <input type="text" class="form-control" placeholder="Сопр"
+                                   aria-label="Кол-во человек">
+                            <input type="text" class="form-control" placeholder="Вод"
+                                   aria-label="Кол-во человек">
+                            <input type="text" class="form-control" placeholder="Итог"
+                                   aria-label="Кол-во человек">
+                        </div>
+                        <label for="exampleDataList" class="form-label">Транспортная компания</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-auto col-lg-3">
+                                <input type="text" class="form-control" placeholder="Кол-во часов"
+                                       aria-label="Кол-во часов">
+                                <input class="form-control" list="datalistOptions2" id="exampleDataList"
+                                       placeholder="Тип тк..." aria-describedby="basic-addon1">
+                                <datalist id="datalistOptions2">
+                                    <option value="Автобус">
+                                    <option value="Микроавтобус">
+                                    <option value="Легковой автомобиль">
+                                </datalist>
+                                <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
+                            </div>
+
+                            {% if user.is_superuser %}
+                                <div class="input-group mb-auto col-lg-3">
+                                    <input class="form-control" list="datalistOptions2" id="exampleDataList"
+                                           placeholder="Транспортная компания..." aria-describedby="basic-addon1">
+                                    <datalist id="datalistOptions2">
+                                        <option value="Вираж">
+                                        <option value="Самолет">
+                                        <option value="Вертолет">
+                                    </datalist>
+                                </div>
+                                <div>
+                                    <input class="btn btn-outline-secondary dateFrom" type="time">
+                                    <input class="btn btn-outline-secondary dateFrom" type="time">
+                                </div>
+                                </div>
+                            {% endif %}
+
+
+                        <label for="exampleDataList" class="form-label">Питание</label>
+                        <div class="input-group mb-3">
+                            <input class="btn btn-outline-secondary dateFrom" type="time">
+                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
+                                   placeholder="Кафе..." aria-describedby="basic-addon1">
+                            <datalist id="datalistOptions4">
+                                <option value="У Олега">
+                                <option value="Чайковский">
+                            </datalist>
+                            <div class="input-group mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Завтрак
+                                </label>
+                            </div>
+                            <input class="btn btn-outline-secondary dateFrom" type="time">
+                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
+                                   placeholder="Кафе..." aria-describedby="basic-addon1">
+                            <datalist id="datalistOptions4">
+                                <option value="У Олега">
+                                <option value="Чайковский">
+                            </datalist>
+                            <div class="input-group mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Обед
+                                </label>
+                            </div>
+                            <input class="btn btn-outline-secondary dateFrom" type="time">
+                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
+                                   placeholder="Кафе..." aria-describedby="basic-addon1">
+                            <datalist id="datalistOptions4">
+                                <option value="У Олега">
+                                <option value="Чайковский">
+                            </datalist>
+                            <div class="input-group mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Ужин
+                                </label>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button type="button" class="btn btn-light"><a href="#"><i
+                                        class="bi bi-plus-square"></i></a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" list="datalistOptions3" id="exampleDataList"
+                                   placeholder="Музеи..." aria-describedby="basic-addon1">
+                            <datalist id="datalistOptions3">
+                                <option value="Эрмитаж">
+                                <option value="Русский музей">
+                                <option value="Музей РЖД">
+                                <option value="Янтарная комната">
+                            </datalist>
+                            <input class="btn btn-outline-secondary dateFrom" type="time">
+                            <span class="input-group-text" id="basic-addon1">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </span>
+                            <button type="button" class="btn btn-light"><a href="#"><i
+                                    class="bi bi-plus-square"></i></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

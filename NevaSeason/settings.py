@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'authapp',
+    'crud_group',
 ]
 
 MIDDLEWARE = [
