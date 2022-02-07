@@ -59,7 +59,7 @@ body {
   content: '';
   position: absolute;
   right: 0;
-  height: 510px;
+  height: 1010px;  /*Высота линий на таблице dashboard*/
   border-right: 1px solid var(--divider);
 }
 

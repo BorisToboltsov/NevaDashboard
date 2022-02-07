@@ -3,7 +3,6 @@
 {% block content %}
     <div class="container">
         <form>
-            {% if not user.is_superuser %}
                 <div class="col-lg-6 mx-auto">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Агенство по отправке"
@@ -66,13 +65,6 @@
                                aria-label="Отправление">
                     </div>
                 </div>
-            {% else %}
-                <div class="card">
-                    <div class="card-body">
-                        Заказчик, Менеджер, RU, Отель, Кол-во человек (шк 10, взрс 10, вод 2)
-                    </div>
-                </div>
-            {% endif %}
             <div class="row">
                 <div class="card " style="width: 21rem;">
                     <div class="card-body">
@@ -110,60 +102,20 @@
                                 </datalist>
                                 <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
                             </div>
-
-                            {% if user.is_superuser %}
-                                <div class="input-group mb-auto col-lg-3">
-                                    <input class="form-control" list="datalistOptions2" id="exampleDataList"
-                                           placeholder="Транспортная компания..." aria-describedby="basic-addon1">
-                                    <datalist id="datalistOptions2">
-                                        <option value="Вираж">
-                                        <option value="Самолет">
-                                        <option value="Вертолет">
-                                    </datalist>
-                                </div>
-                                <div>
-                                    <input class="btn btn-outline-secondary dateFrom" type="time">
-                                    <input class="btn btn-outline-secondary dateFrom" type="time">
-                                </div>
-                                </div>
-                            {% endif %}
-
-
                         <label for="exampleDataList" class="form-label">Питание</label>
                         <div class="input-group mb-3">
-                            <input class="btn btn-outline-secondary dateFrom" type="time">
-                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
-                                   placeholder="Кафе..." aria-describedby="basic-addon1">
-                            <datalist id="datalistOptions4">
-                                <option value="У Олега">
-                                <option value="Чайковский">
-                            </datalist>
                             <div class="input-group mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Завтрак
                                 </label>
                             </div>
-                            <input class="btn btn-outline-secondary dateFrom" type="time">
-                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
-                                   placeholder="Кафе..." aria-describedby="basic-addon1">
-                            <datalist id="datalistOptions4">
-                                <option value="У Олега">
-                                <option value="Чайковский">
-                            </datalist>
                             <div class="input-group mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Обед
                                 </label>
                             </div>
-                            <input class="btn btn-outline-secondary dateFrom" type="time">
-                            <input class="form-control" list="datalistOptions4" id="exampleDataList"
-                                   placeholder="Кафе..." aria-describedby="basic-addon1">
-                            <datalist id="datalistOptions4">
-                                <option value="У Олега">
-                                <option value="Чайковский">
-                            </datalist>
                             <div class="input-group mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">

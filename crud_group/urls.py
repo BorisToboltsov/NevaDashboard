@@ -15,11 +15,12 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from crud_group.views import add_group
+from crud_group.views import add_group, detail_group
 
 app_name = 'crud_group'
 
 urlpatterns = [
     # path('add/', AddGroup.as_view(), name='add'),
     path('add/', add_group, name='add'),
+    path('detail_group/<int:pk>/', detail_group, name='detail_group'),
     ]
