@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from crud_group.forms import AddGroupForm
 from dashboard.models import Group
 
 # Create your views here.
@@ -17,7 +18,10 @@ def is_ajax(request):
 
 
 def add_group(request):
-    return render(request, 'crud_group/addgroup.html')
+    context = {
+        'forms': AddGroupForm,
+    }
+    return render(request, 'crud_group/addgroup.html', context)
 
 
 def detail_group(request, pk):
