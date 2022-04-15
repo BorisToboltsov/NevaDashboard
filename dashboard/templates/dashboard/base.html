@@ -70,7 +70,6 @@
                     <li class="date nav-item">
                         <form action="{% url 'dashboard:check_in' %}" method="post">
                             {% csrf_token %}
-                            {#                <input class="btn btn-outline-secondary dateFrom top_date" type="date">#}
                             {{ form.start_date }}
                             {{ form.end_date }}
                             <button type="submit" class="btn btn-outline-secondary top_button_date top_button_apply">
