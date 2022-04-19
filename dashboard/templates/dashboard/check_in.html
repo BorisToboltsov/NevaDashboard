@@ -14,7 +14,7 @@
             {% for group in groups %}
                 <li class="group" data-id="{{ group.id }}"
                     data-duration="{{ group.arrival_date }}#{{ group.departure_date }}"
-                    data-color="{{ group.color_group }}">{{ group.name_group }}</li>
+                    data-color="{{ group.color_group }}">{{ group.arrival_date }}</li>
             {% endfor %}
         </ul>
     </div>

@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container">
-        <div method="POST">
+        <form method="POST">
             {% csrf_token %}
             <div class="col-lg-6 mx-auto">
                 <label for="basic-url" class="form-label">Выберите цвет отображения в графике</label>
@@ -22,6 +22,14 @@
                     {{ group.departure_date }}
                     {{ group.departure_time }}
                 </div>
+                <label for="exampleDataList" class="form-label">Школьная группа?</label>
+                <div class="input-group mb-3">
+                    {{ group.school_group }}
+                </div>
+                <label for="exampleDataList" class="form-label">Количество человек</label>
+                <div class="input-group mb-3">
+                    {{ group.number_people }}
+                </div>
                 <label for="exampleDataList" class="form-label">Отель</label>
                 <div class="input-group mb-3">
                     <div class="input-group mb-3">
@@ -30,34 +38,30 @@
                     Заезд {{ hotel.arrival_date }}
                     Выезд {{ hotel.departure_date }}
                 </div>
-                <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
-
+                {#                <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>#}
                 <label for="basic-url" class="form-label">Менджер</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" type="text" placeholder="Васильева Василиса Васильевна"
-                           aria-label="Disabled input example" disabled>
+                    {{ group.manager_id }}
                 </div>
                 <label for="basic-url" class="form-label">Номер RU</label>
                 <div class="input-group mb-3">
                     {{ group.number_ru }}
                 </div>
+                <label for="basic-url" class="form-label">Статус оплаты</label>
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Статус оплаты</option>
-                        <option value="1">Нет</option>
-                        <option value="2">Предоплата</option>
-                        <option value="3">Полная</option>
-                    </select>
+                    {{ group.paid_status }}
                 </div>
                 <label for="basic-url" class="form-label">Прибытие</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Прибытие"
-                           aria-label="Прибытие">
+                    {{ group.arrival }}
                 </div>
                 <label for="basic-url" class="form-label">Отправление</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Отправление"
-                           aria-label="Отправление">
+                    {{ group.departure }}
+                </div>
+                <label for="basic-url" class="form-label">Комментарий</label>
+                <div class="input-group mb-3">
+                    {{ group.comment }}
                 </div>
             </div>
             {#            #}
@@ -148,6 +152,7 @@
             <button class="btn btn-outline-secondary top_button_date top_button_apply" type="submit">
                 Сохранить
             </button>
-            </form>
-        </div>
+        </form>
+    </div>
+    </div>
 {% endblock %}

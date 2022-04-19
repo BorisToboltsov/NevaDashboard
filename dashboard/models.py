@@ -187,16 +187,29 @@ class Group(models.Model):
         ('black', 'Черный'),
         ('green', 'Зеленый'),
     ]
+    status = [
+        ('full', 'Полная'),
+        ('not', 'Нет'),
+        ('partial', 'Частичная'),
+    ]
+
+    school = [
+        ('yes', 'Да'),
+        ('no', 'Нет'),
+    ]
+
     # name_group = models.CharField(verbose_name='Название группы', max_length=255, null=True, blank=True)
     color_group = models.CharField(verbose_name='Цвет выделения', max_length=6, choices=color, default='green', null=True, blank=True)
     number_people = models.PositiveSmallIntegerField(verbose_name='Количество человек', null=True, blank=True)
-    school_group = models.CharField(verbose_name='Школьная группа', max_length=255, null=True, blank=True)
-    paid_status = models.CharField(verbose_name='Статус оплаты', max_length=50, null=True, blank=True)
+    school_group = models.CharField(verbose_name='Школьная группа', max_length=7, choices=school, null=True, blank=True)
+    paid_status = models.CharField(verbose_name='Статус оплаты', max_length=8, choices=status, null=True, blank=True)
     registry_sending_travel_agency_id = models.ForeignKey(RegistrySendingTravelAgency, verbose_name='Агенство по отправке', on_delete=models.SET_NULL, null=True, blank=True)
     arrival_date = models.DateField(verbose_name='Дата прибытия', null=True, blank=True)
     arrival_time = models.TimeField(verbose_name='Время прибытия', null=True, blank=True)
     departure_date = models.DateField(verbose_name='Дата отъезда', null=True, blank=True)
     departure_time = models.TimeField(verbose_name='Время отъезда', null=True, blank=True)
+    arrival = models.CharField(verbose_name='Прибытие', max_length=255, null=True, blank=True)
+    departure = models.CharField(verbose_name='Отправление', max_length=255, null=True, blank=True)
     manager_id = models.ForeignKey(EmployeeData, verbose_name='Менеджер', on_delete=models.SET_NULL, null=True, blank=True)
     number_ru = models.CharField(verbose_name='Номер RU', max_length=50, null=True, blank=True)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)

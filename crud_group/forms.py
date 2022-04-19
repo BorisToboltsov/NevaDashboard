@@ -19,7 +19,8 @@ class AddGroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['arrival_date', 'arrival_time', 'departure_date', 'departure_time', 'school_group', 'number_people',
-                  'paid_status', 'registry_sending_travel_agency_id', "number_ru", 'color_group']
+                  'paid_status', 'registry_sending_travel_agency_id', "number_ru", 'color_group', 'paid_status',
+                  'arrival', 'departure', 'comment', 'manager_id']
         # widgets = {
         #     'arrival_date': forms.DateInput(attrs={'class': 'btn btn-outline-secondary dateFrom top_date', 'type': 'date'}),
         #     'arrival_time': forms.TimeInput(
@@ -44,6 +45,13 @@ class AddGroupForm(forms.ModelForm):
         self.fields['registry_sending_travel_agency_id'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['number_ru'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['color_group'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['paid_status'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['number_people'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['arrival'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['departure'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['comment'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['manager_id'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['school_group'].widget.attrs['class'] = 'input-group-text form-control'
 
 
     # hotel = forms.ModelChoiceField(queryset=RegistryHotels.objects.all())
