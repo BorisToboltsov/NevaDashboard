@@ -18,7 +18,7 @@ class TimeInput(forms.TimeInput):
 class AddGroupForm(forms.ModelForm):
     class Meta:
         model = Group
-        fields = ['arrival_date', 'arrival_time', 'departure_date', 'departure_time', 'school_group', 'number_people',
+        fields = ['arrival_date', 'arrival_time', 'departure_date', 'departure_time', 'type_group',
                   'paid_status', 'registry_sending_travel_agency_id', "number_ru", 'color_group', 'paid_status',
                   'arrival', 'departure', 'comment', 'manager_id']
         # widgets = {
@@ -46,12 +46,11 @@ class AddGroupForm(forms.ModelForm):
         self.fields['number_ru'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['color_group'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['paid_status'].widget.attrs['class'] = 'input-group-text form-control'
-        self.fields['number_people'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['arrival'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['departure'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['comment'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['manager_id'].widget.attrs['class'] = 'input-group-text form-control'
-        self.fields['school_group'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['type_group'].widget.attrs['class'] = 'input-group-text form-control'
 
 
     # hotel = forms.ModelChoiceField(queryset=RegistryHotels.objects.all())

@@ -8,7 +8,7 @@
 window.onload = function () {
     $('.group').on('click', function () {
         let group = event.target;
-        console.log(group.getAttribute('data-id'))
+        // console.log(group.getAttribute('data-id'))
         let group_a = group.getAttribute('data-id')
         $.ajax({
             url: "/group/detail_group/" + group_a + "/",

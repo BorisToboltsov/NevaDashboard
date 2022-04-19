@@ -22,16 +22,12 @@
                     {{ group.departure_date }}
                     {{ group.departure_time }}
                 </div>
-                <label for="exampleDataList" class="form-label">Школьная группа?</label>
+                <label for="exampleDataList" class="form-label">Тип группы</label>
                 <div class="input-group mb-3">
-                    {{ group.school_group }}
-                </div>
-                <label for="exampleDataList" class="form-label">Количество человек</label>
-                <div class="input-group mb-3">
-                    {{ group.number_people }}
+                    {{ group.type_group }}
                 </div>
                 <label for="exampleDataList" class="form-label">Отель</label>
-                <div class="input-group mb-3">
+                <div class="mb-3">
                     <div class="input-group mb-3">
                         {{ hotel.registry_hotels_id }}
                     </div>
@@ -64,95 +60,101 @@
                     {{ group.comment }}
                 </div>
             </div>
-            {#            #}
-            {#            <div class="row">#}
-            {#                <div class="card " style="width: 21rem;">#}
-            {#                    <div class="card-body">#}
-            {#                        <h6 class="card-title">02.02.2022 Понедельник</h6>#}
-            {#                        <div class="input-group mb-3">#}
-            {#                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">#}
-            {#                            <label class="form-check-label" for="flexCheckDefault">#}
-            {#                                Свободный день#}
-            {#                            </label>#}
-            {#                        </div>#}
-            {#                        <label for="basic-url" class="form-label">Кол-во человек</label>#}
-            {#                        <div class="input-group mb-3">#}
-            {#                            <input type="text" class="form-control" placeholder="Шк"#}
-            {#                                   aria-label="Кол-во человек">#}
-            {#                            <input type="text" class="form-control" placeholder="Взрс"#}
-            {#                                   aria-label="Кол-во человек">#}
-            {#                            <input type="text" class="form-control" placeholder="Сопр"#}
-            {#                                   aria-label="Кол-во человек">#}
-            {#                            <input type="text" class="form-control" placeholder="Вод"#}
-            {#                                   aria-label="Кол-во человек">#}
-            {#                            <input type="text" class="form-control" placeholder="Итог"#}
-            {#                                   aria-label="Кол-во человек">#}
-            {#                        </div>#}
-            {#                        <label for="exampleDataList" class="form-label">Транспортная компания</label>#}
-            {#                        <div class="input-group mb-3">#}
-            {#                            <div class="input-group mb-auto col-lg-3">#}
-            {#                                <input type="text" class="form-control" placeholder="Кол-во часов"#}
-            {#                                       aria-label="Кол-во часов">#}
-            {#                                <input class="form-control" list="datalistOptions2" id="exampleDataList"#}
-            {#                                       placeholder="Тип тк..." aria-describedby="basic-addon1">#}
-            {#                                <datalist id="datalistOptions2">#}
-            {#                                    <option value="Автобус">#}
-            {#                                    <option value="Микроавтобус">#}
-            {#                                    <option value="Легковой автомобиль">#}
-            {#                                </datalist>#}
-            {#                                <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>#}
-            {#                            </div>#}
-            {#                            <label for="exampleDataList" class="form-label">Питание</label>#}
-            {#                            <div class="input-group mb-3">#}
-            {#                                <div class="input-group mb-3">#}
-            {#                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">#}
-            {#                                    <label class="form-check-label" for="flexCheckDefault">#}
-            {#                                        Завтрак#}
-            {#                                    </label>#}
-            {#                                </div>#}
-            {#                                <div class="input-group mb-3">#}
-            {#                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">#}
-            {#                                    <label class="form-check-label" for="flexCheckDefault">#}
-            {#                                        Обед#}
-            {#                                    </label>#}
-            {#                                </div>#}
-            {#                                <div class="input-group mb-3">#}
-            {#                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">#}
-            {#                                    <label class="form-check-label" for="flexCheckDefault">#}
-            {#                                        Ужин#}
-            {#                                    </label>#}
-            {#                                </div>#}
-            {#                                <div class="input-group mb-3">#}
-            {#                                    <button type="button" class="btn btn-light"><a href="#"><i#}
-            {#                                            class="bi bi-plus-square"></i></a>#}
-            {#                                    </button>#}
-            {#                                </div>#}
-            {#                            </div>#}
-            {#                            <div class="input-group mb-3">#}
-            {#                                <input class="form-control" list="datalistOptions3" id="exampleDataList"#}
-            {#                                       placeholder="Музеи..." aria-describedby="basic-addon1">#}
-            {#                                <datalist id="datalistOptions3">#}
-            {#                                    <option value="Эрмитаж">#}
-            {#                                    <option value="Русский музей">#}
-            {#                                    <option value="Музей РЖД">#}
-            {#                                    <option value="Янтарная комната">#}
-            {#                                </datalist>#}
-            {#                                <input class="btn btn-outline-secondary dateFrom" type="time">#}
-            {#                                <span class="input-group-text" id="basic-addon1">#}
-            {#                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">#}
-            {#                            </span>#}
-            {#                                <button type="button" class="btn btn-light"><a href="#"><i#}
-            {#                                        class="bi bi-plus-square"></i></a>#}
-            {#                                </button>#}
-            {#                            </div>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            <button class="btn btn-outline-secondary top_button_date top_button_apply" type="submit">
+            <div class="row">
+                <div class="card " style="width: 21rem;">
+                    <div class="card-body">
+                        <h6 class="card-title">02.02.2022 Понедельник</h6>
+                        <div class="mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="freeday">
+                            <label class="form-check-label" for="freeday">Свободный день</label>
+                        </div>
+                        <label for="basic-url" class="form-label">Кол-во человек</label>
+                        <div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Школьники"
+                                       aria-label="Кол-во человек">
+                                <input type="text" class="form-control" placeholder="Взрослые"
+                                       aria-label="Кол-во человек">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Сопровождение"
+                                       aria-label="Кол-во человек">
+                                <input type="text" class="form-control" placeholder="Водители"
+                                       aria-label="Кол-во человек">
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Итог"
+                                       aria-label="Кол-во человек">
+                            </div>
+                        </div>
+                        <label for="exampleDataList" class="form-label mt-3">Транспортная компания</label>
+                        <div class="input-group mb-3">
+                            <div class="">
+                                <input type="text" class="form-control" placeholder="Кол-во часов"
+                                       aria-label="Кол-во часов">
+                                <input class="form-control" list="datalistOptions2" id="exampleDataList"
+                                       placeholder="Тип тк..." aria-describedby="basic-addon1">
+                                <datalist id="datalistOptions2">
+                                    <option value="Автобус">
+                                    <option value="Микроавтобус">
+                                    <option value="Легковой автомобиль">
+                                </datalist>
+                            </div>
+                            <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
+                        </div>
+                        <div class="mt-3">
+                            <label for="exampleDataList" class="form-label">Питание</label>
+                            <div class="row">
+                                <div class="row-cols-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Завтрак
+                                    </label>
+                                </div>
+                                <div class="row-cols-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Обед
+                                    </label>
+                                </div>
+                                <div class="row-cols-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Ужин
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-light"><a href="#"><i
+                                    class="bi bi-plus-square"></i></a>
+                            </button>
+                        </div>
+                        <div class="mt-3">
+                            <label for="exampleDataList" class="form-label">Музей</label>
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="flexCheckDefault">
+                            <div class="input-group">
+                                <input class="form-control" list="datalistOptions3" id="exampleDataList"
+                                       placeholder="Музеи..." aria-describedby="basic-addon1">
+                                <datalist id="datalistOptions3">
+                                    <option value="Эрмитаж">
+                                    <option value="Русский музей">
+                                    <option value="Музей РЖД">
+                                    <option value="Янтарная комната">
+                                </datalist>
+                            </div>
+                            <div class="input-group">
+                                <input class="btn btn-outline-secondary dateFrom" type="time">
+                                <button type="button" class="btn btn-light"><a href="#"><i
+                                        class="bi bi-plus-square"></i></a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-secondary top_button_date top_button_apply mt-3 mb-3" type="submit">
                 Сохранить
             </button>
         </form>
-    </div>
     </div>
 {% endblock %}
