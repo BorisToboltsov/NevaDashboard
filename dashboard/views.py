@@ -19,10 +19,10 @@ def check_in(request):
         start_date_30 = start_date - datetime.timedelta(30)
         end_date_30 = end_date + datetime.timedelta(30)
         # groups = Group.objects.values()  # Выбор всех групп
-        groups = Group.objects.filter(arrival_date__gte=start_date_30).filter(departure_date__lte=end_date_30).values()
+        groups = Group.objects.filter(arrival_date_group__gte=start_date_30).filter(departure_date_group__lte=end_date_30).values()
         for i in groups:
-            i['arrival_date'] = i['arrival_date'].isoformat()
-            i['departure_date'] = i['departure_date'].isoformat()
+            i['arrival_date_group'] = i['arrival_date_group'].isoformat()
+            i['departure_date_group'] = i['departure_date_group'].isoformat()
 
     else:
         form = DashboardDate()
@@ -58,8 +58,8 @@ def transports(request):
         # groups = Group.objects.filter(arrival_date__gte=start_date).filter(departure_date__lte=end_date).values()
         for i in groups:
             print(i['arrival_date'])
-            i['arrival_date'] = i['arrival_date'].date().isoformat()
-            i['departure_date'] = i['departure_date'].date().isoformat()
+            i['arrival_date_group'] = i['arrival_date_group'].date().isoformat()
+            i['departure_date_group'] = i['departure_date_group'].date().isoformat()
 
     else:
         form = DashboardDate()

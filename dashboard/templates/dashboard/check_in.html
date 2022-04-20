@@ -13,8 +13,8 @@
         <ul class="chart-bars">
             {% for group in groups %}
                 <li class="group" data-id="{{ group.id }}"
-                    data-duration="{{ group.arrival_date }}#{{ group.departure_date }}"
-                    data-color="{{ group.color_group }}">{{ group.arrival_date }}</li>
+                    data-duration="{{ group.arrival_date_group }}#{{ group.departure_date_group }}"
+                    data-color="{{ group.color_group }}">{{ group.arrival_date_group }}</li>
             {% endfor %}
         </ul>
     </div>
