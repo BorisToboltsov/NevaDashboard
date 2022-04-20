@@ -206,22 +206,20 @@ class Group(models.Model):
         ('vip', 'VIP'),
     ]
 
-    color_group = models.CharField(verbose_name='Цвет выделения', max_length=6, choices=color, default='green',
-                                   null=True, blank=True)
-    type_group = models.CharField(verbose_name='Тип группы', max_length=9, choices=type, null=True, blank=True)
-    paid_status = models.CharField(verbose_name='Статус оплаты', max_length=8, choices=status, null=True, blank=True)
+    color_group = models.CharField(verbose_name='Цвет выделения', max_length=6, choices=color, default='green')
+    type_group = models.CharField(verbose_name='Тип группы', max_length=9, choices=type)
+    paid_status = models.CharField(verbose_name='Статус оплаты', max_length=8, choices=status)
     registry_sending_travel_agency_id = models.ForeignKey(RegistrySendingTravelAgency,
                                                           verbose_name='Агенство по отправке',
-                                                          on_delete=models.SET_NULL, null=True, blank=True)
-    arrival_date = models.DateField(verbose_name='Дата прибытия', null=True, blank=True)
-    arrival_time = models.TimeField(verbose_name='Время прибытия', null=True, blank=True)
-    departure_date = models.DateField(verbose_name='Дата отъезда', null=True, blank=True)
-    departure_time = models.TimeField(verbose_name='Время отъезда', null=True, blank=True)
+                                                          on_delete=models.PROTECT)
+    arrival_date_group = models.DateField(verbose_name='Дата прибытия')
+    arrival_time_group = models.TimeField(verbose_name='Время прибытия')
+    departure_date_group = models.DateField(verbose_name='Дата отъезда')
+    departure_time_group = models.TimeField(verbose_name='Время отъезда')
     arrival = models.CharField(verbose_name='Прибытие', max_length=255, null=True, blank=True)
     departure = models.CharField(verbose_name='Отправление', max_length=255, null=True, blank=True)
-    manager_id = models.ForeignKey(EmployeeData, verbose_name='Менеджер', on_delete=models.SET_NULL, null=True,
-                                   blank=True)
-    number_ru = models.CharField(verbose_name='Номер RU', max_length=50, null=True, blank=True)
+    manager_id = models.ForeignKey(EmployeeData, verbose_name='Менеджер', on_delete=models.PROTECT)
+    number_ru = models.CharField(verbose_name='Номер RU', max_length=50)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -276,8 +274,8 @@ class GroupMuseum(models.Model):
 class GroupHotel(models.Model):
     group_id = models.ForeignKey(Group, verbose_name='Группа', on_delete=models.SET_NULL, null=True)
     registry_hotels_id = models.ForeignKey(RegistryHotels, verbose_name='Отель', on_delete=models.SET_NULL, null=True)
-    arrival_date = models.DateField(verbose_name='Дата заезда')
-    departure_date = models.DateField(verbose_name='Дата выезда')
+    arrival_date_hotel = models.DateField(verbose_name='Дата заезда')
+    departure_date_hotel = models.DateField(verbose_name='Дата выезда')
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

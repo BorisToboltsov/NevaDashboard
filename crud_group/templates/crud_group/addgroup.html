@@ -1,4 +1,6 @@
 {% extends 'dashboard/base.html' %}
+{% load static %}
+
 
 {% block content %}
     <div class="container">
@@ -17,10 +19,10 @@
                 </div>
                 <label for="basic-url" class="form-label">Даты заезда</label>
                 <div class="input-group mb-3">
-                    {{ group.arrival_date }}
-                    {{ group.arrival_time }}
-                    {{ group.departure_date }}
-                    {{ group.departure_time }}
+                    {{ group.arrival_date_group }}
+                    {{ group.arrival_time_group }}
+                    {{ group.departure_date_group }}
+                    {{ group.departure_time_group }}
                 </div>
                 <label for="exampleDataList" class="form-label">Тип группы</label>
                 <div class="input-group mb-3">
@@ -31,8 +33,8 @@
                     <div class="input-group mb-3">
                         {{ hotel.registry_hotels_id }}
                     </div>
-                    Заезд {{ hotel.arrival_date }}
-                    Выезд {{ hotel.departure_date }}
+                    Заезд {{ hotel.arrival_date_hotel }}
+                    Выезд {{ hotel.departure_date_hotel }}
                 </div>
                 {#                <button type="button" class="btn btn-light"><i class="bi bi-plus-square"></i></button>#}
                 <label for="basic-url" class="form-label">Менджер</label>
@@ -158,3 +160,7 @@
         </form>
     </div>
 {% endblock %}
+{% block js %}
+    <script defer src="{% static 'js/addgroup.js' %}"></script>
+{% endblock %}
+
