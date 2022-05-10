@@ -51,7 +51,7 @@ class AddGroupForm(forms.ModelForm):
         self.fields['arrival'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['departure'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['comment'].widget.attrs['class'] = 'input-group-text form-control'
-        self.fields['manager_id'].widget.attrs['class'] = 'input-group-text form-control'
+        self.fields['manager_id'].widget = forms.HiddenInput()
         self.fields['type_group'].widget.attrs['class'] = 'input-group-text form-control'
 
 

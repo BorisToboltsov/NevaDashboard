@@ -2,6 +2,7 @@ from django.db import models
 
 
 # Create your models here.
+from authapp.models import Employee
 
 
 class CatalogName(models.Model):
@@ -169,21 +170,21 @@ class RegistryMuseum(models.Model):
         return self.name_organization
 
 
-class EmployeeData(models.Model):
-    contact_id = models.ManyToManyField(Contact, verbose_name='Контакты')
-    fio = models.CharField(verbose_name='Фио сотрудника', max_length=100)
-    post_employee_id = models.ForeignKey(CatalogData, verbose_name='Должность сотрудника', on_delete=models.SET_NULL,
-                                         null=True, blank=True)
-    comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = 'Список сотрудников'
-        verbose_name_plural = 'Список сотрудников'
-
-    def __str__(self):
-        return f'{self.fio} ({self.post_employee_id.value})'
+# class EmployeeData(models.Model):
+#     contact_id = models.ManyToManyField(Contact, verbose_name='Контакты')
+#     fio = models.CharField(verbose_name='Фио сотрудника', max_length=100)
+#     post_employee_id = models.ForeignKey(CatalogData, verbose_name='Должность сотрудника', on_delete=models.SET_NULL,
+#                                          null=True, blank=True)
+#     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#
+#     class Meta:
+#         verbose_name = 'Список сотрудников'
+#         verbose_name_plural = 'Список сотрудников'
+#
+#     def __str__(self):
+#         return f'{self.fio} ({self.post_employee_id.value})'
 
 
 class Group(models.Model):
@@ -218,7 +219,7 @@ class Group(models.Model):
     departure_time_group = models.TimeField(verbose_name='Время отъезда')
     arrival = models.CharField(verbose_name='Прибытие', max_length=255, null=True, blank=True)
     departure = models.CharField(verbose_name='Отправление', max_length=255, null=True, blank=True)
-    manager_id = models.ForeignKey(EmployeeData, verbose_name='Менеджер', on_delete=models.PROTECT)
+    manager_id = models.OneToOneField(Employee, verbose_name='Менеджер', null=True, on_delete=models.PROTECT)
     number_ru = models.CharField(verbose_name='Номер RU', max_length=50)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -229,7 +230,7 @@ class Group(models.Model):
         verbose_name_plural = 'Группы'
 
     def __str__(self):
-        return f'{self.arrival_date}'
+        return f'{self.arrival_date_group}'
 
 
 class GroupDay(models.Model):
@@ -256,7 +257,7 @@ class GroupDay(models.Model):
 
 class GroupMuseum(models.Model):
     group_id = models.ForeignKey(Group, verbose_name='Группа', on_delete=models.SET_NULL, null=True)
-    guide_id = models.ForeignKey(EmployeeData, verbose_name='Гид', on_delete=models.SET_NULL, null=True)
+    guide_id = models.ForeignKey(Employee, verbose_name='Гид', on_delete=models.SET_NULL, null=True)
     registry_museum_id = models.ForeignKey(RegistryMuseum, verbose_name='Музей', on_delete=models.SET_NULL, null=True)
     datetime = models.DateTimeField(verbose_name='Дата, время')
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
@@ -268,7 +269,7 @@ class GroupMuseum(models.Model):
         verbose_name_plural = 'Музеи групп'
 
     def __str__(self):
-        return f'{self.registry_museum_id.name_organization} ({self.group_id.name_group})'
+        return f'{self.registry_museum_id.name_organization}'
 
 
 class GroupHotel(models.Model):
@@ -285,7 +286,7 @@ class GroupHotel(models.Model):
         verbose_name_plural = 'Отели групп'
 
     def __str__(self):
-        return f'{self.registry_hotels_id.name_organization} ({self.group_id.name_group})'
+        return f'{self.registry_hotels_id.name_organization}'
 
 
 class GroupTransport(models.Model):
@@ -307,7 +308,7 @@ class GroupTransport(models.Model):
         verbose_name_plural = 'Транспорт групп'
 
     def __str__(self):
-        return f'{self.registry_transport_organizations_id.name_organization} ({self.group_id.name_group})'
+        return f'{self.registry_transport_organizations_id.name_organization}'
 
 
 class GroupFood(models.Model):
@@ -325,4 +326,4 @@ class GroupFood(models.Model):
         verbose_name_plural = 'Питание групп'
 
     def __str__(self):
-        return f'{self.registry_food_organizations_id.name_organization} ({self.group_id.name_group})'
+        return f'{self.registry_food_organizations_id.name_organization}'
