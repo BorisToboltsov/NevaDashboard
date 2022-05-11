@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
@@ -7,6 +8,7 @@ import datetime
 from dashboard.models import Group
 
 
+@login_required
 def check_in(request):
     if request.method == 'POST':
         form = DashboardDate(data=request.POST)
@@ -38,6 +40,7 @@ def check_in(request):
     return render(request, 'dashboard/check_in.html', context)
 
 
+@login_required
 def hotels(request):
     context = {
         'title': 'Dashboard отели',
@@ -45,6 +48,7 @@ def hotels(request):
     return render(request, 'dashboard/hotels.html', context)
 
 
+@login_required
 def transports(request):
     if request.method == 'POST':
         form = DashboardDate(data=request.POST)
@@ -75,6 +79,7 @@ def transports(request):
     return render(request, 'dashboard/transports.html', context)
 
 
+@login_required
 def museums(request):
     context = {
         'title': 'Dashboard музеи',
@@ -83,6 +88,7 @@ def museums(request):
     return render(request, 'dashboard/museums.html', context)
 
 
+@login_required
 def food(request):
     context = {
         'title': 'Dashboard питание',

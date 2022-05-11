@@ -15,83 +15,81 @@
 
 </head>
 <body>
-{% if user.is_authenticated %}
-    {% block menu %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'dashboard:check_in' %}">График заездов</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <ul class="menu collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'dashboard:hotels' %}">Отели</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard:museums' %}">Музеи</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard:food' %}">Питание</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard:transports' %}">Транспорт</a>
-                        </li>
-                    </ul>
-                </ul>
-                <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">
-                            <i class="menu-icons bi bi-gear-fill"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authapp:register' %}">
-                            <i class="menu-icons bi bi-person-plus-fill"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authapp:profile' %}">
-                            <i class="menu-icons bi bi-file-person"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authapp:logout' %}">
-                            <i class="menu-icons bi bi-box-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="menu-line-2">
+{% block menu %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'dashboard:check_in' %}">График заездов</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="menu collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="date nav-item">
-                        <form action="{% url 'dashboard:check_in' %}" method="post">
-                            {% csrf_token %}
-                            {{ form.start_date }}
-                            {{ form.end_date }}
-                            <button type="submit" class="btn btn-outline-secondary top_button_date top_button_apply">
-                                Применить
-                            </button>
-                        </form>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'dashboard:hotels' %}">Отели</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'crud_group:add' %}">
-                            <i class="btn-submenu bi bi-plus-square"></i>
-                        </a>
+                        <a class="nav-link" href="{% url 'dashboard:museums' %}">Музеи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:food' %}">Питание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:transports' %}">Транспорт</a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-    {% endblock %}
+            </ul>
+            <ul class="menu navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}">
+                        <i class="menu-icons bi bi-gear-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'authapp:register' %}">
+                        <i class="menu-icons bi bi-person-plus-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'authapp:profile' %}">
+                        <i class="menu-icons bi bi-file-person"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'authapp:logout' %}">
+                        <i class="menu-icons bi bi-box-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="menu-line-2">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="date nav-item">
+                    <form action="{% url 'dashboard:check_in' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.start_date }}
+                        {{ form.end_date }}
+                        <button type="submit" class="btn btn-outline-secondary top_button_date top_button_apply">
+                            Применить
+                        </button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'crud_group:add' %}">
+                        <i class="btn-submenu bi bi-plus-square"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
 
-    {% block content %}
-    {% endblock %}
-    <script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    {% block js %}
-    {% endblock %}
-{% endif %}
+{% block content %}
+{% endblock %}
+<script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% block js %}
+{% endblock %}
 </body>
 </html>

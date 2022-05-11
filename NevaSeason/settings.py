@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+# LOGIN_REDIRECT_URL = ''
+
+# Set login path:
+#   https://docs.djangoproject.com/en/3.2/ref/settings/#login-url
+LOGIN_URL = 'authapp:login'
 
 # Application definition
 

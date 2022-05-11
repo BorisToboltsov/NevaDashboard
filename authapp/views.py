@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -24,6 +25,7 @@ def login(request):
     return render(request, 'authapp/login.html', context)
 
 
+@login_required
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -45,6 +47,7 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 
+@login_required
 def profile(request):
     context = {
         'title': 'Профайл'
@@ -52,6 +55,7 @@ def profile(request):
     return render(request, 'authapp/profile.html', context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('authapp:login'))

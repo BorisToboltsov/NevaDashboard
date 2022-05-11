@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from authapp.views import login
-
+from dashboard.views import check_in
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', login, name='index'),
+    path('', check_in, name='index'),
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('auth/', include('authapp.urls', namespace='authapp')),
     path('group/', include('crud_group.urls', namespace='crud_group')),

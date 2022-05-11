@@ -2,6 +2,7 @@ from django.forms import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from authapp.models import Employee
 from crud_group.forms import AddGroupForm, AddGroupHotelForm
@@ -12,6 +13,7 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
+@login_required
 def add_group(request):
     if request.method == "POST":
         group = AddGroupForm(request.POST)
@@ -33,6 +35,7 @@ def add_group(request):
     return render(request, 'crud_group/addgroup.html', context)
 
 
+@login_required
 def detail_group(request, pk):
     group = Group.objects.get(pk=pk)
     context = {
