@@ -20,7 +20,7 @@ class AddGroupForm(forms.ModelForm):
         model = Group
         fields = ['arrival_date_group', 'arrival_time_group', 'departure_date_group', 'departure_time_group', 'type_group',
                   'paid_status', 'registry_sending_travel_agency_id', "number_ru", 'color_group', 'paid_status',
-                  'arrival', 'departure', 'comment', 'manager_id']
+                  'arrival', 'departure', 'comment']
         # widgets = {
         #     'arrival_date': forms.DateInput(attrs={'class': 'btn btn-outline-secondary dateFrom top_date', 'type': 'date'}),
         #     'arrival_time': forms.TimeInput(
@@ -51,7 +51,7 @@ class AddGroupForm(forms.ModelForm):
         self.fields['arrival'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['departure'].widget.attrs['class'] = 'input-group-text form-control'
         self.fields['comment'].widget.attrs['class'] = 'input-group-text form-control'
-        self.fields['manager_id'].widget = forms.HiddenInput()
+        # self.fields['manager_id'].widget = forms.HiddenInput()
         self.fields['type_group'].widget.attrs['class'] = 'input-group-text form-control'
 
 

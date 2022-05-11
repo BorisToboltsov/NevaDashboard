@@ -219,7 +219,7 @@ class Group(models.Model):
     departure_time_group = models.TimeField(verbose_name='Время отъезда')
     arrival = models.CharField(verbose_name='Прибытие', max_length=255, null=True, blank=True)
     departure = models.CharField(verbose_name='Отправление', max_length=255, null=True, blank=True)
-    manager_id = models.OneToOneField(Employee, verbose_name='Менеджер', null=True, on_delete=models.PROTECT)
+    manager_id = models.ForeignKey(Employee, verbose_name='Менеджер', null=True, on_delete=models.PROTECT)
     number_ru = models.CharField(verbose_name='Номер RU', max_length=50)
     comment = models.TextField(verbose_name='Комментарий', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

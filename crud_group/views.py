@@ -16,25 +16,19 @@ def add_group(request):
     if request.method == "POST":
         group = AddGroupForm(request.POST)
         hotel = AddGroupHotelForm(request.POST)
-        # group.instance.manager_id_id = Employee.objects.get(user_id_id=request.user.id).user_id_id
-        group_form = group.save()
+        group_form = group.save(commit=False)
+        group_form.manager_id = Employee.objects.filter(user_id_id=request.user.id)[0]
+        group_form = group_form.save()
         hotel_form = hotel.save(commit=False)
         hotel_form.group_id = group_form
         hotel_form.save()
-        # employee = Employee.objects.filter(user_id_id=request.user.id)
-        # print(request.user.id)
-        # print(employee[0].first_name)
-        # print(employee[0].user_id, 'user_id')
-        # print(employee[0].user_id_id)
 
     else:
-        group = AddGroupForm()
+        group_form = AddGroupForm()
         hotel = AddGroupHotelForm()
-        # employee = Employee.objects.filter(user_id_id=request.user.id)
     context = {
-        'group': group,
+        'group': group_form,
         'hotel': hotel,
-        # 'employee': employee,
     }
     return render(request, 'crud_group/addgroup.html', context)
 
