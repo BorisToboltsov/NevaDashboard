@@ -1,4 +1,3 @@
-from django.forms import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -24,7 +23,7 @@ def add_group(request):
         hotel_form = hotel.save(commit=False)
         hotel_form.group_id = group_form
         hotel_form.save()
-
+        return HttpResponseRedirect(reverse("dashboard:check_in"))
     else:
         group_form = AddGroupForm()
         hotel = AddGroupHotelForm()
